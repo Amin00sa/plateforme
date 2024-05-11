@@ -4,7 +4,7 @@
       <div class="carousel__item">
         <div class="w-full h-full flex flex-col justify-end pl-6">
           <Pagination style="visibility: hidden;"/>
-          <img :src="slide.image" class="h-96" alt="slider_image">
+          <img :src="slide.image" class="h-96 w-96" alt="slider_image">
         </div>
       </div>
     </Slide>
@@ -17,13 +17,22 @@ import 'vue3-carousel/dist/carousel.css'
 
 const contents = [
   {
-    image: '/img/PhotoRoom-20231029_142055.png',
+    image: '/img/photo1_section1.png',
   },
   {
-    image: '/img/PhotoRoom-20231104_013136.png',
+    image: '/img/photo5_section1.png',
   },
   {
-    image: '/img/8452880-ai.png',
+    image: '/img/photo2_section1.png',
+  },
+  {
+    image: '/img/photo3_section1.png',
+  },
+  {
+    image: '/img/photo6_section1.png',
+  },
+  {
+    image: '/img/photo4_section1.png',
   }
 ]
 </script>

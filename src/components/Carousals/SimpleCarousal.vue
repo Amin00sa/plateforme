@@ -1,5 +1,5 @@
 <template>
-  <Carousel :autoplay="3000" :wrap-around="true">
+  <Carousel :autoplay="5000" :wrap-around="true">
     <Slide v-for="slide in contents" :key="slide.image">
       <div class="carousel__item">
         <div class="w-full h-full flex flex-col justify-between p-6">
