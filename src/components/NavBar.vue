@@ -1,11 +1,10 @@
 <template>
-  <header class="sticky top-0 z-50" :class="isTopPage?'bg-black':'bg-white'">
-    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+  <header class="sticky top-0 z-50 bg-black">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-[0.7rem] lg:px-8" aria-label="Global">
       <div class="flex lg:flex-1">
         <RouterLink to="/" class="-m-1.5 p-1.5">
           <span class="sr-only">Your Company</span>
-          <img v-if="isTopPage" class="h-8 w-auto" src="/img/logo-white.png" alt=""/>
-          <img v-else class="h-8 w-auto" src="/img/logo.png" alt=""/>
+          <img class="h-8 w-auto" src="/img/logo-white.png" alt=""/>
         </RouterLink>
       </div>
       <div class="flex lg:hidden">
@@ -19,8 +18,7 @@
         <Dropdown class="flex items-center justify-center">
           <template #menuButton>
             <MenuButton
-                class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 text-sm font-semibold hover:bg-gray-800"
-                :class="isTopPage?'bg-black text-white':'bg-white text-black hover:text-white'">
+                class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 text-sm font-semibold hover:bg-gray-800 bg-black text-white">
               Fr
               <ChevronDownIcon class="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true"/>
             </MenuButton>
@@ -40,13 +38,12 @@
           </template>
         </Dropdown>
         <RouterLink v-for="item in navigation" :key="item.name" :to="item.to"
-                    class="text-sm font-semibold leading-6" :class="isTopPage?'text-white':'text-black hover:text-zinc-500'">{{ item.name }}
+                    class="text-sm font-semibold leading-6 text-white">{{ item.name }}
         </RouterLink>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-center lg:items-center">
         <RouterLink to="#"
-                    class="text-sm border-2 w-36 rounded text-center py-2 font-semibold leading-6"
-                    :class="isTopPage?'text-white border-white hover:bg-white hover:text-black':'text-black hover:text-white hover:bg-black border-black'"
+                    class="text-sm border-2 w-36 rounded text-center py-2 font-semibold leading-6 text-white border-white hover:bg-white hover:text-black"
                     @click="openModal">
           S'inscrire <span
             aria-hidden="true">&rarr;</span></RouterLink>
@@ -108,21 +105,26 @@
       </DialogPanel>
     </Dialog>
   </header>
-  <v-modal-login
+  <v-modal-pre-register
       :is-active="isOpen" @close-modal="closeModal"
+  />
+  <v-modal-register
+      :is-active="isOpenStep2" @close-modal="closeModalStep2"
   />
 </template>
 
 <script setup>
-import {onMounted, ref} from 'vue'
+import {computed, ref} from 'vue'
 import {Dialog, DialogPanel, MenuButton, MenuItem, MenuItems} from '@headlessui/vue'
 import {ChevronDownIcon} from '@heroicons/vue/20/solid'
 import {Bars3Icon, XMarkIcon} from '@heroicons/vue/24/outline'
 import {RouterLink} from 'vue-router'
 import Dropdown from "@/components/Dropdown.vue";
-import VModalLogin from "@/components/Modals/VModalLogin.vue";
+import {useOpenModalStore} from "@/stores/openModal.js";
+import VModalRegister from "@/components/Modals/VModalRegister.vue";
+import VModalPreRegister from "@/components/Modals/VModalPreRegister.vue";
 
-const isTopPage = ref(true);
+const store = useOpenModalStore();
 const navigation = [
   {name: 'Ecoles', to: '#'},
   {name: 'Formations', to: '#'},
@@ -135,23 +137,26 @@ const languages = [
   {name: 'Esp'},
 ]
 
-const mobileMenuOpen = ref(false)
-const isOpen = ref(false)
+let mobileMenuOpen = ref(false)
+const isOpen = computed(() => store.status)
+const isOpenStep2 = ref(false)
 
-function closeModal() {
-  isOpen.value = false
+
+const closeModal = (nextStep) => {
+  store.closeModalStore();
+  if (nextStep) {
+    openModalStep2();
+  }
 }
 
-onMounted(function () {
-  window.addEventListener('scroll', changeBackgroundColor);
-});
-
-function openModal() {
-  isOpen.value = true
+const openModal = () => {
+  store.openModalStore();
 }
 
-const changeBackgroundColor = () => {
-  const scrollY = window.scrollY || window.pageYOffset;
-  isTopPage.value = scrollY === 0;
-};
+const openModalStep2 = () => {
+  isOpenStep2.value = true;
+}
+const closeModalStep2 = () => {
+  isOpenStep2.value = false;
+}
 </script>
