@@ -53,7 +53,7 @@
           </li>
         </ul>
         <button
-            class="bg-gray-200 w-32 text-gray-900 hover:bg-gray-500 hover:text-gray-200 rounded-sm text-lg py-1.5 font-semibold">
+            class="bg-gray-200 w-44 text-gray-900 hover:bg-gray-500 hover:text-gray-200 rounded-sm text-lg py-1.5 font-bold">
           Découvrir
         </button>
       </div>
@@ -81,7 +81,7 @@
         </div>
       </div>
       <button
-          class="bg-gray-200 w-48 text-nowrap text-gray-900 hover:bg-gray-500 hover:text-gray-200 rounded-sm text-lg py-1.5 font-semibold">
+          class="bg-gray-200 w-56 text-nowrap text-gray-900 hover:bg-gray-500 hover:text-gray-200 rounded-sm text-lg py-1.5 font-bold">
         Devenir Partenaire
       </button>
     </div>
