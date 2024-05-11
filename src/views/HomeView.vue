@@ -3,20 +3,21 @@
     <div class="w-full px-0 md:px-12 lg:px-24 md:w-2/3 lg:w-2/3">
       <div class="w-full">
         <div class="flex flex-col gap-6">
-          <p class="text-2xl font-semibold text-white w-full md:w-96 lg:w-96 font-['Elephant'] tracking-wider leading-10">Nous vous accompagnons à chaque étape pour faire de votre projet une réalité</p>
-          <button
-              class="rounded-md hover:cursor-pointer
-                  hover:bg-[#F6F7F1] hover:text-zinc-900 text-white
-                  text-lg font-semibold rounded-xl
-                  w-full md:w-80 lg:w-80
-                  border-2 border-white px-6 py-2 text-center">
-            S'inscrire gratuitement
-          </button>
+          <p class="text-3xl font-semibold text-white w-full md:w-[40rem] lg:w-[46rem] font-['Elephant'] tracking-wider leading-10">
+            <span>
+              {{ headerContent.title }}
+            </span>
+            <br>
+            <span>
+              {{ headerContent.subtitle }}
+            </span>
+          </p>
+          <search text="Rechercher une formation ou une école..." />
         </div>
       </div>
     </div>
     <div class="hidden w-1/3 lg:block md:block">
-      <auto-scroll-carousal />
+      <auto-scroll-carousal/>
     </div>
   </div>
   <main class="lg:mx-36 md:mx-16 sm:mx-8 mx-8 flex flex-col gap-6 py-6">
@@ -103,6 +104,9 @@ import Card from "@/components/Cards/Card.vue";
 import Verify from "@/components/Icons/verify.vue";
 import SimpleCarousal from "@/components/Carousals/SimpleCarousal.vue";
 import AutoScrollCarousal from "@/components/Carousals/AutoScrollCarousal.vue";
+import Search from "@/components/Search.vue";
+
+defineEmits(['openModal']);
 
 const fields = [
   {name: 'Génie Informatique'},
@@ -138,4 +142,8 @@ const contents = [
     subtitle: 'Bénéficiez d\'un accompagnement dédié pour optimiser votre présence sur notre plateforme'
   },
 ]
+const headerContent = {
+  title: 'L\'éducation de qualité à votre portée',
+  subtitle: 'Explorez les écoles supérieurs privées'
+}
 </script>

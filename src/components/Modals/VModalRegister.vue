@@ -5,8 +5,10 @@
         <img class="w-auto h-full" src="/img/sign_up_student1.jpg" alt=""/>
       </div>
       <div class="flex flex-col gap-10 items-center py-14 w-full md:w-1/2 lg:w-1/2 bg-[#E9EAE9]">
-        <p class="text-2xl font-medium">Se connecter</p>
+        <p class="text-2xl font-medium">S'inscrire</p>
         <div class="flex flex-col gap-2 w-full px-8">
+          <v-input label="Nom" type="text" :required=true />
+          <v-input label="Prénom" type="text" :required=true />
           <v-input label="Email" type="email" :required=true />
           <div class="relative w-full text-left">
             <label
@@ -29,28 +31,35 @@
                 class="absolute text-black right-3 top-[1.85rem] cursor-pointer"
                 @click="showPassword = !showPassword"
             >
-              <img v-if="showPassword" src="/img/eye.png" alt="eye_image" class="w-5 h-5">
-              <img v-else src="/img/eyeHidden.png" alt="eye_image_hidden" class="w-5 h-5">
+              <img v-if="showPassword" src="/img/eye.png" alt="eye_open" class="w-5 h-5">
+              <img v-else src="/img/eyeHidden.png" alt="eye_hidden" class="w-5 h-5">
             </span>
           </div>
-          <span @click="openForgetPasswordModal" class="text-blue-800 cursor-pointer text-right text-xs font-medium">Mot de passe oublié</span>
+          <div class="mt-1.5 flex text-left text-xs">
+            <input type="checkbox" class="w-6">
+            <label class="text-black">
+              Oui, j'accèpte les
+              <span class="text-blue-800">conditions d'emploi</span>, y compris l'<span class="text-blue-800">accord d'utilisation</span>
+              et la <span class="text-blue-800">politique de confidentialité</span>
+            </label>
+          </div>
         </div>
         <button
-            class="bg-blue-800 text-gray-100 w-32 rounded-lg -mt-2 text-sm py-2 font-semibold"
+            class="bg-blue-800 text-gray-100 w-32 rounded-lg -mt-6 text-sm py-2 font-semibold"
             type="button"
             @click="emit('closeModal')"
         >
-          Se connecter
+          Créer un compte
         </button>
-        <div class="text-xs -mt-6 font-medium flex gap-1">
-          <p class="text-black">Vous n'avez pas de compte ?</p>
-          <span @click="openRegisterModal" class="text-blue-800 cursor-pointer">Inscrivez-vous ici</span>
+        <div class="text-xs -mt-8 font-medium flex gap-1">
+          <p class="text-black">Disposez-vous déjà d'un compte?</p>
+          <span @click="openConnectModal" class="text-blue-800 cursor-pointer">Connectez-vous</span>
         </div>
       </div>
     </div>
   </modal>
-  <v-modal-forget-password
-      :is-active="isopenForgetPasswordModal" @close-modal="closeForgetPasswordModal"
+  <v-modal-login
+      :is-active="isOpenConnectModal" @close-modal="closeConnectModal"
   />
 </template>
 <script setup>
@@ -58,7 +67,7 @@ import Modal from "@/components/Modal.vue";
 import VInput from "@/components/VInput.vue";
 import {reactive, ref} from "vue";
 import {useOpenModalStore} from "@/stores/openModal.js";
-import VModalForgetPassword from "@/components/Modals/VModalForgetPassword.vue";
+import VModalLogin from "@/components/Modals/VModalLogin.vue";
 
 const showPassword = ref(false);
 const store = useOpenModalStore();
@@ -73,16 +82,13 @@ defineProps({
 const formData = reactive({
   password: '',
 })
-
-const openRegisterModal = () => {
-  store.openModalStore();
-}
-const isopenForgetPasswordModal = ref(false);
-const openForgetPasswordModal = () => {
+const isOpenConnectModal = ref(false);
+const openConnectModal = () => {
+  store.closeModalStore();
   emit('closeModal');
-  isopenForgetPasswordModal.value = true;
+  isOpenConnectModal.value = true;
 }
-const closeForgetPasswordModal = () => {
-  isopenForgetPasswordModal.value = false;
+const closeConnectModal = () => {
+  isOpenConnectModal.value = false;
 }
 </script>
