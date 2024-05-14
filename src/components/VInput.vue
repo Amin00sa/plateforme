@@ -3,6 +3,8 @@
     <label v-if="label" :class="labelClasses"> {{ label }} <span v-if="required" class="text-red-600">*</span></label>
     <div>
       <input
+          @change="$emit('change')"
+          @input="$emit('update:modelValue', $event.target.value)"
           ref="input"
           :class="classes"
           :disabled="disabled"
