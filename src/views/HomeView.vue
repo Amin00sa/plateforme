@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center w-full bg-black p-10">
+  <div class="flex justify-center items-center w-full bg-black py-10 pr-0 pl-10">
     <div class="w-full px-0 md:px-12 lg:px-24 md:w-2/3 lg:w-2/3">
       <div class="w-full">
         <div class="flex flex-col gap-6">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="hidden w-1/3 lg:block md:block">
-      <auto-scroll-carousal/>
+      <images-with-effect/>
     </div>
   </div>
   <main class="lg:mx-36 md:mx-16 sm:mx-8 mx-8 flex flex-col gap-6 py-6">
@@ -27,10 +27,13 @@
     <div class="flex justify-between">
       <p class="text-lg text-gray-600 font-semibold">Façonner votre avenir académique dans un monde d'opportunités
         infinies</p>
-      <div
-          class="bg-blue-800 rounded-md hover:cursor-pointer hover:bg-[#F6F7F1] hover:text-blue-800 text-white border-2 border-blue-800 w-32 py-2 text-center">
-        <p class="font-semibold">Explorer >></p>
-      </div>
+      <button
+          class="bg-blue-800 rounded-md hover:cursor-pointer
+          hover:bg-blue-600 text-white text-nowrap
+          border-2 border-blue-800 w-32 py-2 text-center"
+          @click="openModal">
+        <span class="font-semibold">Explorer >></span>
+      </button>
     </div>
     <div class="grid lg:grid-rows-2 lg:grid-cols-4 sm:grid-rows-3 sm:grid-cols-3 gap-3">
       <simple-card v-for="field in fields" :key="field.name" :text="field.name"/>
@@ -57,8 +60,10 @@
           Découvrir
         </button>
       </div>
-      <div class="w-1/3 hidden lg:block md:block">
-        <img class="w-auto h-full rounded-r-xl" src="/img/front-view-smiley-student-with-laptop.jpg" alt=""/>
+      <div class="w-1/3 hidden h-2/3 lg:block md:block">
+        <div class="w-full">
+          <img class="w-full h-full rounded-r-xl lg:max-h-[468px] h-full" src="/img/front-view-smiley-student-with-laptop.jpg" alt=""/>
+        </div>
       </div>
     </div>
   </main>
@@ -103,10 +108,12 @@ import Puzzle from "@/components/Icons/puzzle.vue";
 import Card from "@/components/Cards/Card.vue";
 import Verify from "@/components/Icons/verify.vue";
 import SimpleCarousal from "@/components/Carousals/SimpleCarousal.vue";
-import AutoScrollCarousal from "@/components/Carousals/AutoScrollCarousal.vue";
 import Search from "@/components/Search.vue";
+import ImagesWithEffect from "@/components/Effects/ImagesWithEffect.vue";
+import {useOpenModalStore} from "@/stores/openModal.js";
 
 defineEmits(['openModal']);
+const store = useOpenModalStore();
 
 const fields = [
   {name: 'Génie Informatique'},
@@ -145,5 +152,9 @@ const contents = [
 const headerContent = {
   title: 'L\'éducation de qualité à votre portée',
   subtitle: 'Explorez les écoles supérieurs privées'
+}
+
+function openModal() {
+  store.openModalStore();
 }
 </script>

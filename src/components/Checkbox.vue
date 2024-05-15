@@ -3,7 +3,6 @@
     <div class="flex flex-col w-1/2 gap-3">
       <div v-for="(type, typeIdx) in types" :key="typeIdx"
            class="relative flex flex-col w-28 items-start py-4 border border-blue-800 hover:bg-blue-600 hover:text-white rounded-lg text-blue-800 cursor-pointer"
-           :class="{ 'bg-blue-600 !text-white': type.checked }"
            @click="toggleCheckbox(type)">
         <div class="absolute right-2 top-2 h-6">
           <input :id="`type-${type.id}`" :name="`type-${type.id}`" type="checkbox"
