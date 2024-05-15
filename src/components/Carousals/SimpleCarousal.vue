@@ -14,7 +14,7 @@
               </p>
               <button
                   class="bg-blue-800 rounded-md hover:cursor-pointer
-                  hover:bg-[#F6F7F1] hover:text-blue-800 text-white text-nowrap
+                  hover:bg-blue-600 text-white text-nowrap
                   text-lg font-semibold w-full px-2 md:px-3 lg:px-6 md:w-80 lg:w-80
                   border-2 border-blue-800 py-2 text-center"
                   @click="openModal">

@@ -8,7 +8,7 @@
         <p class="text-2xl font-medium">S'inscrire</p>
         <checkbox @type-selected="typeSelected" />
         <button
-          class="bg-gray-900 text-gray-100 disabled:bg-gray-300 w-32 disabled:text-gray-600 rounded-lg mt-6 text-sm py-1.5 font-medium"
+          class="bg-blue-800 text-white disabled:bg-gray-300 w-32 disabled:text-gray-600 rounded-lg mt-6 text-sm py-1.5 font-medium"
           type="button"
           :disabled="disabledButton"
           @click="emit('closeModal',typeId)"

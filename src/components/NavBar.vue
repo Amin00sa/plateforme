@@ -20,7 +20,7 @@
           <Bars3Icon class="h-6 w-6" aria-hidden="true" />
         </button>
       </div>
-      <div class="hidden lg:flex lg:gap-x-12">
+      <div class="hidden lg:flex lg:justify-center lg:items-center lg:gap-x-12">
         <Dropdown class="flex items-center justify-center">
           <template #menuButton>
             <MenuButton
@@ -56,15 +56,14 @@
           class="text-sm font-semibold leading-6 text-white"
           >{{ item.name }}
         </RouterLink>
-      </div>
-      <div class="hidden lg:flex lg:flex-1 lg:justify-center lg:items-center">
-        <RouterLink
-          to="#"
-          class="text-sm border-2 w-36 rounded text-center py-2 font-semibold leading-6 text-white border-white hover:bg-white hover:text-black"
-          @click="openModal"
-        >
-          S'inscrire <span aria-hidden="true">&rarr;</span></RouterLink
-        >
+        <div class="hidden lg:flex lg:flex-1">
+          <button
+              class="text-sm border-2 w-36 rounded text-center py-2 font-semibold leading-6 text-white border-white hover:bg-white hover:text-black"
+              @click="openModal">
+            S'inscrire <span
+              aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
       </div>
     </nav>
     <Dialog class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
