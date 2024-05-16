@@ -68,8 +68,8 @@
       </div>
     </div>
   </main>
-  <div class="flex bg-[#0B0325] flex-row justify-around h-[38rem] pt-16 lg:w-full text-white">
-    <div class="w-full sm:w-full lg:w-1/2 md:w-1/2 py-12 px-9 justify-between text-xl flex flex-col">
+  <div class="flex bg-[#0B0325] flex-row px-28 justify-around h-[38rem] pt-16 lg:w-full text-white">
+    <div class="w-full sm:w-full lg:w-1/2 md:w-1/2 py-12 justify-between text-xl flex flex-col">
       <p class="text-4xl font-semibold font-['Elephant']">
         <span>
           Rejoinez
@@ -78,21 +78,26 @@
         <span class="text-[#A066CB] text-4xl font-semibold font-['Elephant']">La révolution éducative.</span>
       </p>
       <div>
-        <div v-for="content in contents" :key="content.title" class="flex items-center gap-5">
-          <verify class="w-10 h-10"/>
-          <div class="flex flex-col" :class="content.class">
-            <span class="text-2xl font-semibold">{{ content.title }}</span>
-            <span class="text-md">{{ content.subtitle }}</span>
+        <div v-for="content in contents" :key="content.title">
+          <div class="flex items-center gap-4">
+            <span class="w-12 h-12">
+              <verify class="w-12 h-12"/>
+            </span>
+            <div class="flex flex-col" :class="content.class">
+              <span class="text-2xl font-semibold">{{ content.title }}</span>
+              <span class="text-md">{{ content.subtitle }}</span>
+            </div>
           </div>
         </div>
       </div>
       <button
-          class="bg-gray-200 w-56 text-nowrap text-gray-900 hover:bg-gray-500 hover:text-gray-200 rounded-sm text-lg py-1.5 font-bold">
+          class="bg-gray-200 w-56 text-nowrap text-gray-900 hover:bg-gray-500 hover:text-gray-200 rounded-sm text-lg py-1.5 font-bold"
+          @click="openModal">
         Devenir Partenaire
       </button>
     </div>
     <div class="w-1/2 hidden lg:block md:block">
-      <div class="flex justify-center">
+      <div class="flex justify-end">
         <div v-for="content in contentCards" :key="content.title">
           <card :content="content"/>
         </div>

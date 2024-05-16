@@ -1,7 +1,7 @@
 <template>
   <header class="sticky top-0 z-50 bg-black">
     <nav
-      class="mx-auto flex max-w-7xl items-center justify-between p-[0.7rem] lg:px-8"
+      class="mx-auto flex items-center justify-between p-[0.7rem] lg:px-36"
       aria-label="Global"
     >
       <div class="flex lg:flex-1">

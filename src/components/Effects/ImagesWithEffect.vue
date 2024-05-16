@@ -15,7 +15,6 @@
 .image-container {
   width: 400px;
   background-size: cover;
-  background-position: center;
   position: absolute;
   bottom: 0;
   top: 0;
